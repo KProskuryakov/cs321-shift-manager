@@ -4,7 +4,7 @@ plugins {
 	id 'java'
 }
 
-group = 'edu.gmu.cs321.team3.shiftmanager'
+group = 'edu.gmu.cs321.team3'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
