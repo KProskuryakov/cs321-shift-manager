@@ -1,5 +1,6 @@
 package edu.gmu.cs321.team3.shiftmanager.users;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -14,6 +15,7 @@ public class User {
 	@NotEmpty
 	private String name;
 
+	@Column(unique = true)
 	@NotEmpty
 	private String email;
 
