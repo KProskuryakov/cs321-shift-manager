@@ -1,11 +1,17 @@
 package edu.gmu.cs321.team3.shiftmanager.users;
 
+import java.util.Set;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface UserRepository extends JpaRepository<User, Long>{
+import edu.gmu.cs321.team3.shiftmanager.orgs.Org;
 
-	User findByEmail(String email);
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+
+	public User findByEmail(String email);
+
+	public Set<User> findAllByOrg(Org org);
 
 }
