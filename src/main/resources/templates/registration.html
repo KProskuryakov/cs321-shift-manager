@@ -1,11 +1,6 @@
-
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-
 <!DOCTYPE html>
-<html lang="en">
+
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
       <meta charset="utf-8">
       <title>Create an account</title>
@@ -18,47 +13,40 @@
 
     <div class="container">
 
-        <form method="POST" modelAttribute="userForm" class="form-signin">
+        <form action="#" th:action="@{/registration}" method="POST" th:object="${userForm}" class="form-signin">
             <h2 class="form-signin-heading">Create your account</h2>
-            <spring:bind path="name">
-                <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <form:input type="text" path="name" class="form-control" placeholder="Name"
-                                autofocus="true"></form:input>
-                    <form:errors path="name"></form:errors>
-                </div>
-            </spring:bind>
 
-            <spring:bind path="password">
-                <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <form:input type="password" path="password" class="form-control" placeholder="Password"></form:input>
-                    <form:errors path="password"></form:errors>
-                </div>
-            </spring:bind>
+            <div>
+                <label>Name: </label>
+                <input type="text" th:field="*{name}" />
+                <ul>
+                    <li th:each="err : ${#fields.errors('name')}" th:text="${err}" />
+                </ul>
+            </div>
 
-            <spring:bind path="email">
-                <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <form:input type="email" path="email" class="form-control"
-                                placeholder="Email"></form:input>
-                    <form:errors path="Email"></form:errors>
-                </div>
-            </spring:bind>
+            <div>
+                <label>Email: </label>
+                <input type="text" th:field="*{email}" />
+                <ul>
+                    <li th:each="err : ${#fields.errors('email')}" th:text="${err}" />
+                </ul>
+            </div>
 
-            <spring:bind path="role">
-                <label for="roles">Role:</label>
-                <select id="roles" name="rolelist" form="userForm" path="role">
-                <option value="EMPLOYEE">Employee</option>    
-                <option value="MANAGER">Manager</option>
-                <option value="SHIFTLEAD">Shift Lead</option>
-                </select>
-            </spring:bind>
+            <div>
+                <label>Password: </label>
+                <input type="text" th:field="*{password}" />
+                <ul>
+                    <li th:each="err : ${#fields.errors('password')}" th:text="${err}" />
+                </ul>
+            </div>
 
             <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
         </form>
 
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="${contextPath}/resources/js/bootstrap.min.js"></script> -->
   </body>
 </html>
 

@@ -1,8 +1,5 @@
 package edu.gmu.cs321.team3.shiftmanager.users;
 
-import edu.gmu.cs321.team3.shiftmanager.users.User;
-import edu.gmu.cs321.team3.shiftmanager.config.MyUserService;
-import edu.gmu.cs321.team3.shiftmanager.users.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
 	@Autowired
-    private MyUserService userService;
+    private UserService userService;
 
     @Autowired
     private UserValidator userValidator;
@@ -25,17 +22,19 @@ public class UserController {
 
         return "registration";
 	}
-	
+
 	@PostMapping("/registration")
-    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
+    public String registration(@ModelAttribute("userForm") UserForm userForm, BindingResult bindingResult) {
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
             return "registration";
         }
-        userService.save(userForm);
+
+        userService.registerNewUser(userForm);
+        System.out.println("User: " + userForm.getEmail());
 
         return "login";
 	}
-	
+
 }
