@@ -21,8 +21,8 @@ import edu.gmu.cs321.team3.shiftmanager.shifts.ShiftSwap;
 @Entity
 public class User {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 
 	@NotEmpty
 	private String name;
@@ -52,11 +52,11 @@ public class User {
 	@ManyToMany(mappedBy = "invitedUsers")
 	private Set<Org> invitesFromOrgs;
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

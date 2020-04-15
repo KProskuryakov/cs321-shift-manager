@@ -13,8 +13,8 @@ import edu.gmu.cs321.team3.shiftmanager.users.User;
 @Entity
 public class ShiftSwap {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private Long id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 
 	@NotEmpty
 	private String message;
@@ -37,11 +37,11 @@ public class ShiftSwap {
 	@ManyToOne
 	private User receiver;
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
