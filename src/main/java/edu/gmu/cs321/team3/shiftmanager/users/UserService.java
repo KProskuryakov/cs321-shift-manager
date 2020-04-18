@@ -25,4 +25,9 @@ public class UserService {
         userRepo.save(newUser);
     }
 
+    @Transactional
+    public boolean isEmailUnique(String email) {
+        return userRepo.findByEmail(email) == null;
+    }
+
 }
