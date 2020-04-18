@@ -1,51 +1,26 @@
 package edu.gmu.cs321.team3.shiftmanager.forms;
 
+import edu.gmu.cs321.team3.shiftmanager.users.Role;
+
 public class EditUserTypeForm {
-	
-	private String manager;
-	private String shiftLeader;
-	private String employee;
-	private String currentType;
-	private String newType;
 
-	public String getmanager() {
-		return manager;
-	}
+    private String userEmail;
+    private Role role;
 
-	public void setmanager(String manager) {
-		this.manager = manager;
-	}	
-	
-	public String getshiftLeader() {
-		return shiftLeader;
-	}
+    public String getUserEmail() {
+        return userEmail;
+    }
 
-	public void setshiftLeader(String shiftLeader) {
-		this.shiftLeader = shiftLeader;
-	}
-	
-	public String getemployee() {
-		return employee;
-	}
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
 
-	public void setemployee(String employee) {
-		this.employee = employee;
-	}
-	
-	public String getcurrentType() {
-		return currentType;
-	}
+    public Role getRole() {
+        return role;
+    }
 
-	public void setcurrentType(String currentType) {
-		this.currentType = currentType;
-	}
-	
-	public String getnewType() {
-		return newType;
-	}
-
-	public void setnewType(String newType) {
-		this.newType = newType;
-	}
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
 }

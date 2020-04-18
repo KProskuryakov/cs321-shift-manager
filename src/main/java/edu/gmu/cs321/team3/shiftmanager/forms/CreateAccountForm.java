@@ -1,53 +1,58 @@
 package edu.gmu.cs321.team3.shiftmanager.forms;
 
-import edu.gmu.cs321.team3.shiftmanager.users.String;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import edu.gmu.cs321.team3.shiftmanager.users.UniqueEmailConstraint;
 
 public class CreateAccountForm {
-	
-	private String fname;
-	private String lname;
-	private String email;
-	private String username;
-	private String password;
 
-	public String getFName() {
-		return fname;
-	}
+    @NotEmpty
+    private String fname;
 
-	public void setFName(String fname) {
-		this.fname = fname;
-	}	
-	
-	public String getLName() {
-		return lname;
-	}
+    @NotEmpty
+    private String lname;
 
-	public void setLName(String lname) {
-		this.lname = lname;
-	}
-	
-	public String getEmail() {
-		return email;
-	}
+    @Pattern(regexp = "^([a-zA-Z0-9_\\-\\.]{1,256})@([a-zA-Z0-9_\\-\\.]{1,256})\\.([a-zA-Z]{1,20})$", message = "Must be valid email")
+    @UniqueEmailConstraint
+    private String email;
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
-	public String getUsername() {
-		return username;
-	}
+    @Size(min = 8, max = 64)
+    private String password;
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	
-	public String getPassword() {
-		return password;
-	}
+    @Size(min = 8, max = 64)
+    private String reEnteredPassword;
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getFname() {
+        return fname;
+    }
+
+    public void setFname(String fname) {
+        this.fname = fname;
+    }
+
+    public String getLname() {
+        return lname;
+    }
+
+    public void setLname(String lname) {
+        this.lname = lname;
+    }
 }

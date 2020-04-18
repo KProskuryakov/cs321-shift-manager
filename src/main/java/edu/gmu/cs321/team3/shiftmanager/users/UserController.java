@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import edu.gmu.cs321.team3.shiftmanager.forms.CreateAccountForm;
+
 @Controller
 public class UserController {
 
@@ -14,20 +16,20 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/registration")
-    public String registration(UserForm userForm) {
-        return "registration";
+    public String registration(CreateAccountForm createAccountForm) {
+        return "TimeAlign_CreateNewAccount";
     }
 
     @PostMapping("/registration")
-    public String registration(@Valid UserForm userForm, BindingResult bindingResult) {
+    public String registration(@Valid CreateAccountForm createAccountForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "registration";
+            return "TimeAlign_CreateNewAccount";
         }
 
-        userService.registerNewUser(userForm);
-        System.out.println("User: " + userForm.getEmail());
+        userService.registerNewUser(createAccountForm);
+        System.out.println("User: " + createAccountForm.getEmail());
 
-        return "login";
+        return "TimeAlign_SignIn";
     }
 
     @GetMapping("/dashboard")

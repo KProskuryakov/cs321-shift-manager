@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import edu.gmu.cs321.team3.shiftmanager.forms.CreateAccountForm;
+
 @Service
 public class UserService {
 
@@ -16,9 +18,10 @@ public class UserService {
     private PasswordEncoder bCryptPasswordEncoder;
 
     @Transactional
-    public void registerNewUser(UserForm userForm) {
+    public void registerNewUser(CreateAccountForm userForm) {
         User newUser = new User();
-        newUser.setName(userForm.getName());
+        newUser.setFname(userForm.getFname());
+        newUser.setLname(userForm.getLname());
         newUser.setEmail(userForm.getEmail());
         newUser.setPassword(bCryptPasswordEncoder.encode(userForm.getPassword()));
         newUser.setRole(Role.EMPLOYEE);
