@@ -23,6 +23,9 @@ public class Org {
 	@NotEmpty
 	private String name;
 
+	@NotEmpty
+	private String information;
+
 	@OneToMany(mappedBy = "org")
 	private Set<User> members;
 
@@ -49,6 +52,14 @@ public class Org {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getInformation() {
+		return information;
+	}
+
+	public void setInformation(String information) {
+		this.information = information;
 	}
 
 	public Set<User> getMembers() {

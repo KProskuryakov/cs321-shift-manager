@@ -2,15 +2,22 @@ package edu.gmu.cs321.team3.shiftmanager.forms;
 
 public class CreateNewOrgForm {
 	
-	private String org;
+	private String name;
+	private String information;
 
-
-	public String getOrg() {
-		return org;
+	public String getName() {
+		return name;
 	}
 
-	public void setOrg(String org) {
-		this.org = org;
+	public void setName(String org) {
+		this.name = name;
 	}	
-	
+
+	public String getInformation() {
+		return information;
+	}
+
+	public void setInformation(String information) {
+		this.information = information;
+	}
 }
