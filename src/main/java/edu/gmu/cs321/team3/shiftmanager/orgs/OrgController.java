@@ -16,27 +16,20 @@ public class OrgController {
     private OrgService orgService;
 
     @GetMapping("/org_registration")
-    public String registration(CreateNewOrgForm orgForm) {
-        return "registration";
+    public String registration(@ModelAttribute("orgForm") CreateNewOrgForm orgForm) {
+        return "org_registration";
     }
 
     @PostMapping("/org_registration")
-    public String registration(@Valid CreateNewOrgForm orgForm, BindingResult bindingResult) {
+    public String registration(@Valid @ModelAttribute("orgForm") CreateNewOrgForm orgForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "registration";
+            return "org_registration";
         }
 
         orgService.registerNewOrg(orgForm);
         System.out.println("Organization: " + orgForm.getName());
 
-        return "";
+        return "redirect:/dashboard";
     }
-
-    @GetMapping("/dashboard")
-    public String dashboard() {
-        return "TimeAlign_UserDashboard";
-    }
-
-}
 
 }

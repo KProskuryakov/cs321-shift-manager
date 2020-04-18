@@ -16,12 +16,12 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/registration")
-    public String registration(CreateAccountForm createAccountForm) {
+    public String registration(@ModelAttribute("userForm") CreateAccountForm createAccountForm) {
         return "TimeAlign_CreateNewAccount";
     }
 
     @PostMapping("/registration")
-    public String registration(@Valid CreateAccountForm createAccountForm, BindingResult bindingResult) {
+    public String registration(@Valid @ModelAttribute("userForm") CreateAccountForm createAccountForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "TimeAlign_CreateNewAccount";
         }

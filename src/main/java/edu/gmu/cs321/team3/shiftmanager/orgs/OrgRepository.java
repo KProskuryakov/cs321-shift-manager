@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OrgRepository extends JpaRepository<Org, Long> {
 
-	public Org findByName(String name;)
+	public Org findByName(String name);
 
 }

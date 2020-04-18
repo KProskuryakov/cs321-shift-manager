@@ -4,7 +4,6 @@ import edu.gmu.cs321.team3.shiftmanager.forms.CreateNewOrgForm;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -23,6 +22,4 @@ public class OrgService {
         newOrg.setInformation(orgForm.getInformation());
         orgRepo.save(newOrg);
     }
-}
-
 }
