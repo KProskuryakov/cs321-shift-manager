@@ -2,53 +2,48 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-  <meta charset="utf-8">
-  <title>Create an account</title>
-  <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-  <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
-</head>
+  <head>
+      <meta charset="utf-8">
+      <title>Create an account</title>
+  </head>
 
-<body>
+  <body>
 
-  <div class="container">
-      <form action="#" th:action="@{/registration}" method="POST" th:object="${userForm}" class="form-signin">
-        
-          <h2 class="form-signin-heading">Create your account</h2>
+    <div class="container">
 
-          <div>
-              <label>Name: </label>
-              <input type="text" th:field="*{name}" />
-              <ul>
-                  <li th:each="err : ${#fields.errors('name')}" th:text="${err}" />
-              </ul>
-          </div>
+        <form action="#" th:action="@{/registration}" method="POST" th:object="${userForm}" class="form-signin">
+            <h2 class="form-signin-heading">Create your account</h2>
 
-          <div>
-              <label>Email: </label>
-              <input type="text" th:field="*{email}" />
-              <ul>
-                  <li th:each="err : ${#fields.errors('email')}" th:text="${err}" />
-              </ul>
-          </div>
-          
-          <div>
-              <label>Password: </label>
-              <input type="text" th:field="*{password}" />
-              <ul>
-                  <li th:each="err : ${#fields.errors('password')}" th:text="${err}" />
-              </ul>
-          </div>
+            <div>
+                <label>Name: </label>
+                <input type="text" th:field="*{name}" />
+                <ul>
+                    <li th:each="err : ${#fields.errors('name')}" th:text="${err}" />
+                </ul>
+            </div>
 
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
-            
-      </form>
-  </div>
-    
-  <!--- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> --->
-  <!--- <script src="${contextPath}/resources/js/bootstrap.min.js"></script> --->
-  
-</body>
+            <div>
+                <label>Email: </label>
+                <input type="text" th:field="*{email}" />
+                <ul>
+                    <li th:each="err : ${#fields.errors('email')}" th:text="${err}" />
+                </ul>
+            </div>
+
+            <div>
+                <label>Password: </label>
+                <input type="text" th:field="*{password}" />
+                <ul>
+                    <li th:each="err : ${#fields.errors('password')}" th:text="${err}" />
+                </ul>
+            </div>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        </form>
+
+    </div>
+  </body>
+
 </html>
 
 
