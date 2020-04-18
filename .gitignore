@@ -54,3 +54,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# build files #
+bin

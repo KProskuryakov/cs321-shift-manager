@@ -21,11 +21,14 @@ import edu.gmu.cs321.team3.shiftmanager.shifts.ShiftSwap;
 @Entity
 public class User {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 
 	@NotEmpty
-	private String name;
+    private String fname;
+
+    @NotEmpty
+    private String lname;
 
 	@Column(unique = true)
 	@NotEmpty
@@ -52,20 +55,12 @@ public class User {
 	@ManyToMany(mappedBy = "invitedUsers")
 	private Set<Org> invitesFromOrgs;
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getEmail() {
@@ -123,5 +118,29 @@ public class User {
 	public void setOrg(Org org) {
 		this.org = org;
 	}
+
+    public String getFname() {
+        return fname;
+    }
+
+    public void setFname(String fname) {
+        this.fname = fname;
+    }
+
+    public String getLname() {
+        return lname;
+    }
+
+    public void setLname(String lname) {
+        this.lname = lname;
+    }
+
+    public Set<Org> getInvitesFromOrgs() {
+        return invitesFromOrgs;
+    }
+
+    public void setInvitesFromOrgs(Set<Org> invitesFromOrgs) {
+        this.invitesFromOrgs = invitesFromOrgs;
+    }
 
 }

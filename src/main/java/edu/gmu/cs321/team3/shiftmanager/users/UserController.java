@@ -1,41 +1,40 @@
 package edu.gmu.cs321.team3.shiftmanager.users;
 
-import edu.gmu.cs321.team3.shiftmanager.users.User;
-import edu.gmu.cs321.team3.shiftmanager.config.MyUserService;
-import edu.gmu.cs321.team3.shiftmanager.users.UserValidator;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import edu.gmu.cs321.team3.shiftmanager.forms.CreateAccountForm;
 
 @Controller
 public class UserController {
 
-	@Autowired
-    private MyUserService userService;
-
     @Autowired
-    private UserValidator userValidator;
+    private UserService userService;
 
-	@GetMapping("/registration")
-    public String registration(Model model) {
-        model.addAttribute("userForm", new User());
+    @GetMapping("/registration")
+    public String registration(CreateAccountForm createAccountForm) {
+        return "TimeAlign_CreateNewAccount";
+    }
 
-        return "registration";
-	}
-	
-	@PostMapping("/registration")
-    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
-        userValidator.validate(userForm, bindingResult);
-
+    @PostMapping("/registration")
+    public String registration(@Valid CreateAccountForm createAccountForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "registration";
+            return "TimeAlign_CreateNewAccount";
         }
-        userService.save(userForm);
 
-        return "login";
-	}
-	
+        userService.registerNewUser(createAccountForm);
+        System.out.println("User: " + createAccountForm.getEmail());
+
+        return "TimeAlign_SignIn";
+    }
+
+    @GetMapping("/dashboard")
+    public String dashboard() {
+        return "TimeAlign_UserDashboard";
+    }
+
 }
