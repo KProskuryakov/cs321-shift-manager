@@ -22,4 +22,11 @@ public class OrgService {
         newOrg.setInformation(orgForm.getInformation());
         orgRepo.save(newOrg);
     }
+
+
+    @Transactional
+    public boolean isNameUnique(String name) {
+        return orgRepo.findByName(name) == null;
+    }
+
 }
