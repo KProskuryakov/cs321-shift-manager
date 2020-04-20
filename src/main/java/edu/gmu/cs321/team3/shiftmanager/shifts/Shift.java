@@ -15,58 +15,58 @@ import edu.gmu.cs321.team3.shiftmanager.users.User;
 
 @Entity
 public class Shift {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-	private Date startTime;
+    private Date startTime;
 
-	private Date endTime;
+    private Date endTime;
 
-	@ManyToMany // relation owner
-	private Set<User> attendees;
+    @ManyToMany // relation owner
+    private Set<User> attendees;
 
-	@ManyToOne
-	private Org org;
+    @ManyToOne
+    private Org org;
 
-	public long getId() {
-		return id;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public Date getStartTime() {
-		return startTime;
-	}
+    public Date getStartTime() {
+        return startTime;
+    }
 
-	public void setStartTime(Date startTime) {
-		this.startTime = startTime;
-	}
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
 
-	public Date getEndTime() {
-		return endTime;
-	}
+    public Date getEndTime() {
+        return endTime;
+    }
 
-	public void setEndTime(Date endTime) {
-		this.endTime = endTime;
-	}
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
 
-	public Set<User> getAttendees() {
-		return attendees;
-	}
+    public Set<User> getAttendees() {
+        return attendees;
+    }
 
-	public void setAttendees(Set<User> attendees) {
-		this.attendees = attendees;
-	}
+    public void setAttendees(Set<User> attendees) {
+        this.attendees = attendees;
+    }
 
-	public Org getOrg() {
-		return org;
-	}
+    public Org getOrg() {
+        return org;
+    }
 
-	public void setOrg(Org org) {
-		this.org = org;
-	}
+    public void setOrg(Org org) {
+        this.org = org;
+    }
 
 }

@@ -21,7 +21,8 @@ public class UserController {
     }
 
     @PostMapping("/registration")
-    public String registration(@Valid @ModelAttribute("userForm") CreateAccountForm createAccountForm, BindingResult bindingResult) {
+    public String registration(@Valid @ModelAttribute("userForm") CreateAccountForm createAccountForm,
+            BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "TimeAlign_CreateNewAccount";
         }

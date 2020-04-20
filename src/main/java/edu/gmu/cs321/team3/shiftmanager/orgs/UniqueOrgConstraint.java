@@ -9,7 +9,6 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-
 @Documented
 @Constraint(validatedBy = UniqueOrgValidator.class)
 @Target({ ElementType.METHOD, ElementType.FIELD })
@@ -21,9 +20,3 @@ public @interface UniqueOrgConstraint {
 
     Class<? extends Payload>[] payload() default {};
 }
-
-
-
-
-
-

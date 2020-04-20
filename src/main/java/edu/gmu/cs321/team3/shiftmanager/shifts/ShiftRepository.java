@@ -10,8 +10,8 @@ import edu.gmu.cs321.team3.shiftmanager.users.User;
 @Repository
 public interface ShiftRepository {
 
-	public Set<Shift> findAllByOrg(Org org);
+    public Set<Shift> findAllByOrg(Org org);
 
-	public Set<Shift> findAllAttendeesContaining(User user);
+    public Set<Shift> findAllAttendeesContaining(User user);
 
 }

@@ -10,10 +10,8 @@ import edu.gmu.cs321.team3.shiftmanager.orgs.Org;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-	public User findByEmail(String email);
+    public User findByEmail(String email);
 
-	public Set<User> findAllByOrg(Org org);
+    public Set<User> findAllByOrg(Org org);
 
 }
-
-

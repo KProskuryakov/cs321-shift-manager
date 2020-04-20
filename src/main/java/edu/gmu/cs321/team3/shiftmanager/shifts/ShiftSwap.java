@@ -12,100 +12,100 @@ import edu.gmu.cs321.team3.shiftmanager.users.User;
 
 @Entity
 public class ShiftSwap {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-	@NotEmpty
-	private String message;
+    @NotEmpty
+    private String message;
 
-	private Boolean accepted = false; // accepted by employee
-	private Boolean approved = false; // approved by manager
+    private Boolean accepted = false; // accepted by employee
+    private Boolean approved = false; // approved by manager
 
-	@ManyToOne
-	private Org org;
+    @ManyToOne
+    private Org org;
 
-	@ManyToOne
-	private Shift wantedShift;
+    @ManyToOne
+    private Shift wantedShift;
 
-	@ManyToOne
-	private Shift offeredShift;
+    @ManyToOne
+    private Shift offeredShift;
 
-	@ManyToOne
-	private User requestor;
+    @ManyToOne
+    private User requestor;
 
-	@ManyToOne
-	private User receiver;
+    @ManyToOne
+    private User receiver;
 
-	public long getId() {
-		return id;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public String getMessage() {
-		return message;
-	}
+    public String getMessage() {
+        return message;
+    }
 
-	public void setMessage(String message) {
-		this.message = message;
-	}
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
-	public Boolean getAccepted() {
-		return accepted;
-	}
+    public Boolean getAccepted() {
+        return accepted;
+    }
 
-	public void setAccepted(Boolean accepted) {
-		this.accepted = accepted;
-	}
+    public void setAccepted(Boolean accepted) {
+        this.accepted = accepted;
+    }
 
-	public Boolean getApproved() {
-		return approved;
-	}
+    public Boolean getApproved() {
+        return approved;
+    }
 
-	public void setApproved(Boolean approved) {
-		this.approved = approved;
-	}
+    public void setApproved(Boolean approved) {
+        this.approved = approved;
+    }
 
-	public Org getOrg() {
-		return org;
-	}
+    public Org getOrg() {
+        return org;
+    }
 
-	public void setOrg(Org org) {
-		this.org = org;
-	}
+    public void setOrg(Org org) {
+        this.org = org;
+    }
 
-	public Shift getWantedShift() {
-		return wantedShift;
-	}
+    public Shift getWantedShift() {
+        return wantedShift;
+    }
 
-	public void setWantedShift(Shift wantedShift) {
-		this.wantedShift = wantedShift;
-	}
+    public void setWantedShift(Shift wantedShift) {
+        this.wantedShift = wantedShift;
+    }
 
-	public Shift getOfferedShift() {
-		return offeredShift;
-	}
+    public Shift getOfferedShift() {
+        return offeredShift;
+    }
 
-	public void setOfferedShift(Shift offeredShift) {
-		this.offeredShift = offeredShift;
-	}
+    public void setOfferedShift(Shift offeredShift) {
+        this.offeredShift = offeredShift;
+    }
 
-	public User getRequestor() {
-		return requestor;
-	}
+    public User getRequestor() {
+        return requestor;
+    }
 
-	public void setRequestor(User requestor) {
-		this.requestor = requestor;
-	}
+    public void setRequestor(User requestor) {
+        this.requestor = requestor;
+    }
 
-	public User getReceiver() {
-		return receiver;
-	}
+    public User getReceiver() {
+        return receiver;
+    }
 
-	public void setReceiver(User receiver) {
-		this.receiver = receiver;
-	}
+    public void setReceiver(User receiver) {
+        this.receiver = receiver;
+    }
 }

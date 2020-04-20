@@ -4,24 +4,23 @@ import edu.gmu.cs321.team3.shiftmanager.orgs.UniqueOrgConstraint;
 
 public class CreateNewOrgForm {
 
-	@UniqueOrgConstraint
-	private String name;
-	private String information;
+    @UniqueOrgConstraint
+    private String name;
+    private String information;
 
-	
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getInformation() {
-		return information;
-	}
+    public String getInformation() {
+        return information;
+    }
 
-	public void setInformation(String information) {
-		this.information = information;
-	}
+    public void setInformation(String information) {
+        this.information = information;
+    }
 }

@@ -21,7 +21,8 @@ public class OrgController {
     }
 
     @PostMapping("/org_registration")
-    public String registration(@Valid @ModelAttribute("orgForm") CreateNewOrgForm orgForm, BindingResult bindingResult) {
+    public String registration(@Valid @ModelAttribute("orgForm") CreateNewOrgForm orgForm,
+            BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "org_registration";
         }

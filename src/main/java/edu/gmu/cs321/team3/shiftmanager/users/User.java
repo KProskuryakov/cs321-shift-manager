@@ -20,104 +20,104 @@ import edu.gmu.cs321.team3.shiftmanager.shifts.ShiftSwap;
 
 @Entity
 public class User {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-	@NotEmpty
+    @NotEmpty
     private String fname;
 
     @NotEmpty
     private String lname;
 
-	@Column(unique = true)
-	@NotEmpty
-	private String email;
+    @Column(unique = true)
+    @NotEmpty
+    private String email;
 
-	@NotEmpty
-	private String password;
+    @NotEmpty
+    private String password;
 
-	@Enumerated(EnumType.STRING)
-	private Role role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
-	@ManyToMany(mappedBy = "attendees")
-	private Set<Shift> shifts;
+    @ManyToMany(mappedBy = "attendees")
+    private Set<Shift> shifts;
 
-	@OneToMany(mappedBy = "requestor")
-	private Set<ShiftSwap> requestedSwaps;
+    @OneToMany(mappedBy = "requestor")
+    private Set<ShiftSwap> requestedSwaps;
 
-	@OneToMany(mappedBy = "receiver")
-	private Set<ShiftSwap> receivedSwaps;
+    @OneToMany(mappedBy = "receiver")
+    private Set<ShiftSwap> receivedSwaps;
 
-	@ManyToOne
-	private Org org;
+    @ManyToOne
+    private Org org;
 
-	@ManyToMany(mappedBy = "invitedUsers")
-	private Set<Org> invitesFromOrgs;
+    @ManyToMany(mappedBy = "invitedUsers")
+    private Set<Org> invitesFromOrgs;
 
-	public long getId() {
-		return id;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public Role getRole() {
-		return role;
-	}
+    public Role getRole() {
+        return role;
+    }
 
-	public void setRole(Role role) {
-		this.role = role;
-	}
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
-	public Set<Shift> getShifts() {
-		return shifts;
-	}
+    public Set<Shift> getShifts() {
+        return shifts;
+    }
 
-	public void setShifts(Set<Shift> shifts) {
-		this.shifts = shifts;
-	}
+    public void setShifts(Set<Shift> shifts) {
+        this.shifts = shifts;
+    }
 
-	public Set<ShiftSwap> getRequestedSwaps() {
-		return requestedSwaps;
-	}
+    public Set<ShiftSwap> getRequestedSwaps() {
+        return requestedSwaps;
+    }
 
-	public void setRequestedSwaps(Set<ShiftSwap> requestedSwaps) {
-		this.requestedSwaps = requestedSwaps;
-	}
+    public void setRequestedSwaps(Set<ShiftSwap> requestedSwaps) {
+        this.requestedSwaps = requestedSwaps;
+    }
 
-	public Set<ShiftSwap> getReceivedSwaps() {
-		return receivedSwaps;
-	}
+    public Set<ShiftSwap> getReceivedSwaps() {
+        return receivedSwaps;
+    }
 
-	public void setReceivedSwaps(Set<ShiftSwap> receivedSwaps) {
-		this.receivedSwaps = receivedSwaps;
-	}
+    public void setReceivedSwaps(Set<ShiftSwap> receivedSwaps) {
+        this.receivedSwaps = receivedSwaps;
+    }
 
-	public Org getOrg() {
-		return org;
-	}
+    public Org getOrg() {
+        return org;
+    }
 
-	public void setOrg(Org org) {
-		this.org = org;
-	}
+    public void setOrg(Org org) {
+        this.org = org;
+    }
 
     public String getFname() {
         return fname;
