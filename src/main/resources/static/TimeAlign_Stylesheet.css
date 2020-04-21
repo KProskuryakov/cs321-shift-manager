@@ -12,7 +12,7 @@
   color: #f2f2f2;
   width: auto;
   text-align: center;
-  margin: 0px 0px; 
+  margin: 0px 0px;
   padding: 10px 30px;
   text-decoration: none;
   font-size: 16px;
@@ -29,6 +29,11 @@
 .topnav a.active {
   background-color: #4CAF50;
   color: white;
+}
+
+/* Allow for navbar items to be on the right side */
+.topnav a.right {
+  float: right
 }
 
 

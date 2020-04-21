@@ -55,4 +55,12 @@ public class CreateAccountForm {
     public void setLname(String lname) {
         this.lname = lname;
     }
+
+    public String getReEnteredPassword() {
+        return reEnteredPassword;
+    }
+
+    public void setReEnteredPassword(String reEnteredPassword) {
+        this.reEnteredPassword = reEnteredPassword;
+    }
 }

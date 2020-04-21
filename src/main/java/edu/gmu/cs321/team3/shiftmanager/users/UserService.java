@@ -33,4 +33,9 @@ public class UserService {
         return userRepo.findByEmail(email) == null;
     }
 
+    @Transactional
+    public User userForEmail(String email) {
+        return userRepo.findByEmail(email);
+    }
+
 }

@@ -2,51 +2,49 @@
 <html lang=“en”>
 
 <head>
-  <meta charset=“utf-8”>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="TimeAlign_Stylesheet.css">
-  <title>Time Align</title>
+    <meta charset=“utf-8”>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="TimeAlign_Stylesheet.css">
+    <title>Time Align</title>
 </head>
 
 <body>
 
-<!--- Navigation Menu --->
+    <!--- Navigation Menu --->
 
-<div class="topnav">
-    <a href="TimeAlign_HomePage.html">Home</a>
-    <a href="TimeAlign_CreateNewAccount.html">Create Account</a>
-    <a class="active" href="TimeAlign_SignIn.html">Sign In</a>
-    <a href="TimeAlign_ContactUs.html">Contact Us</a>
-  </div>
+    <div class="topnav" th:replace="fragments/navbar.html"></div>
 
-<!--- Company Name --->
+    <!--- Company Name --->
 
-<div class="body">
-  <h1><b><font color="#008080">Time<font color="#4CAF50">Align </h1>
-  <h2><i><font color="black">Shift-Management System</h2></b></i><br>
+    <div class="body">
+        <h1><b>
+                <font color="#008080">Time<font color="#4CAF50">Align </h1>
+        <h2><i>
+                <font color="black">Shift-Management System</h2></b></i><br>
 
-<!-- User Sign-In Form -->
+        <!-- User Sign-In Form -->
 
-<div style="margin-left: 80px; margin-right: 80px; padding:0px;">
-  <b><h3>Welcome back! Please enter your credentials, then hit submit.</h3></b>
-  <ul><span class="tab2">
-    <form th:action="@{/login}" method="post">
-    <label for="username">User Email: </label>
-    <input type="text" id="username" name="username">
-    <br><br>
-    <label for="pass"> Password: </label>
-    <input type="text" id="password" name="password">
-    <br><br>
-    <input type="submit" value="Submit">
-    </form>
-  </ul>
-
+        <div style="margin-left: 80px; margin-right: 80px; padding:0px;">
+            <b>
+                <h3>Welcome back! Please enter your credentials, then hit submit.</h3>
+            </b>
+            <ul><span class="tab2">
+                    <form th:action="@{/login}" method="post">
+                        <label for="username">User Email: </label>
+                        <input type="text" id="username" name="username">
+                        <br><br>
+                        <label for="pass"> Password: </label>
+                        <input type="password" id="password" name="password">
+                        <br><br>
+                        <input type="submit" value="Submit">
+                    </form>
+            </ul>
 
 
-<!-- This submit button for testing of HTML only -->
-  <a href="TimeAlign_UserDashboard.html">Tester Submit</a>
 
-  </span>
-</div>
-<br><br><br><br>
+            <!-- This submit button for testing of HTML only -->
+            <a href="TimeAlign_UserDashboard.html">Tester Submit</a>
 
+            </span>
+        </div>
+        <br><br><br><br>

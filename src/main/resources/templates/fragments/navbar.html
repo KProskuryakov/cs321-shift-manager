@@ -1,0 +1,10 @@
+<div class="topnav">
+    <a th:classappend="${#request.requestURI == '/' ? 'active':''}" href="TimeAlign_HomePage.html" th:href="@{/}">Home</a>
+    <a th:classappend="${#request.requestURI == '/registration' ? 'active':''}" th:unless="${user}" href="TimeAlign_CreateNewAccount.html" th:href="@{/registration}">Create Account</a>
+    <a th:classappend="${#request.requestURI == '/login' ? 'active':''}" th:unless="${user}" href="TimeAlign_SignIn.html" th:href="@{/login}">Sign In</a>
+    <a th:classappend="${#request.requestURI == '/dashboard' ? 'active':''}" th:if="${user}" href="TimeAlign_UserDashboard.html" th:href="@{/dashboard}">Dashboard</a>
+    <a th:classappend="${#request.requestURI == '/contact' ? 'active':''}" href="TimeAlign_ContactUs.html" th:href="@{/contact}">Contact Us</a>
+
+    <a th:if="${user}" class="right" href="TimeAlign_LogOut.html" th:href="@{/logout}">Sign Out</a>
+    <a th:if="${user}" class="right" href="#" th:text="'Currently: ' + ${user.email}">Currently No User</a>
+</div>

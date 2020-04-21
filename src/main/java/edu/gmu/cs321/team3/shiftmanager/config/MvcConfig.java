@@ -10,6 +10,7 @@ public class MvcConfig implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("TimeAlign_HomePage");
         registry.addViewController("/login").setViewName("TimeAlign_SignIn");
+        registry.addViewController("/contact").setViewName("TimeAlign_ContactUs");
     }
 
 }
