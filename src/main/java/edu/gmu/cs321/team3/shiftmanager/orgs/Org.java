@@ -82,8 +82,9 @@ public class Org {
         return invitedUsers;
     }
 
-    public void setInvitedUsers(Set<User> invitedUsers) {
-        this.invitedUsers = invitedUsers;
+    public void inviteUser(User user) {
+        invitedUsers.add(user);
+        user.getInvitesFromOrgs().add(this);
     }
 
     public Set<Shift> getSchedule() {

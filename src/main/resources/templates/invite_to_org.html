@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang=“en”>
+
+<head>
+    <meta charset=“utf-8”>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" th:href="@{/TimeAlign_Stylesheet.css}">
+    <title>Time Align</title>
+</head>
+
+<body>
+
+    <!-- Navigation Menu -->
+
+    <div class="topnav" th:replace="fragments/navbar.html"></div>
+
+    <!--- Company Name --->
+
+    <div class="body">
+        <h3>Invite To Org:</h3>
+        <form th:action="@{/org/invite}" method="post" th:object="${orgForm}">
+            <label for="userEmail">User Email: </label>
+            <input type="text" th:field="*{userEmail}">
+            <ul>
+                <li th:each="err : ${#fields.errors('userEmail')}" th:text="${err}" />
+            </ul>
+            <br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+
+</html>

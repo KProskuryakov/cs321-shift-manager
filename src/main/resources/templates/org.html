@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang=“en”>
+
+<head>
+    <meta charset=“utf-8”>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" th:href="@{/TimeAlign_Stylesheet.css}">
+    <title>Time Align</title>
+</head>
+
+<body>
+
+    <!-- Navigation Menu -->
+
+    <div class="topnav" th:replace="fragments/navbar.html"></div>
+
+    <!--- Company Name --->
+
+    <div class="body">
+        <h3>Name:</h3>
+        <div th:text="${org.name}"></div>
+        <h3>Information:</h3>
+        <div th:text="${org.information}"></div>
+        <h3>Members:</h3>
+        <ul>
+            <li th:each="member : ${org.members}" th:text="${member.fname} + ' ' + ${member.lname}">Member Name</li>
+        </ul>
+        <br>
+        <a href="invite_to_org.html" th:href="@{/org/invite}">Invite Members</a>
+        <br>
+        <h3>Invited:</h3>
+        <ul>
+            <li th:each="invitedUser : ${org.invitedUsers}" th:text="${invitedUser.fname} + ' ' + ${invitedUser.lname}">Invited Name</li>
+        </ul>
+    </div>
+</body>
+
+</html>

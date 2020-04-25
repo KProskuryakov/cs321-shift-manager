@@ -139,8 +139,4 @@ public class User {
         return invitesFromOrgs;
     }
 
-    public void setInvitesFromOrgs(Set<Org> invitesFromOrgs) {
-        this.invitesFromOrgs = invitesFromOrgs;
-    }
-
 }
