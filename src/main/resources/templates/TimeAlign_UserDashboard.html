@@ -24,14 +24,17 @@
                 <font color="black">Shift-Management System</h2></b></i>
 
         <!-- User Dashboard --->
-
         <div style="margin-left: 80px; margin-right: 80px; padding:0px;">
-            <h3><b>USER INFO</h3></b>
+            <h3><b>USER INFO</b></h3>
         </div>
-        <div style="margin-left: 120px; margin-right: 120px; padding:0px;">
-            <h4><b>Type:</h4></b>
-            <i>(Employee [E], Shift Leader [SL], or General Manager [GM])</i><br>
-            <h4><b>Organization:</h4></b><br>
+        <div style="margin-left: 120px; margin-right: 120px; padding:0px; margin-bottom:30px">
+            <h4><b>Type:</b></h4>
+            <em th:text="${user.role != null && user.org != null} ? ${user.role} : 'Not In Org'">(Employee [E], Shift Leader [SL], or General Manager [GM])</em>
+            <br>
+            <h4><b>Organization:</b></h4>
+            <a th:unless="${user.org}" href="org_registration.html" th:href="@{/org_registration}">Register a new Organization</a>
+            <a th:if="${user.org}" href="org.html" th:href="@{/org/{orgId}(orgId=${user.org.id})}" th:text="${user.org.name}">Org Name</a>
+            <br>
         </div>
 
         <!-- Calendar of Events --->

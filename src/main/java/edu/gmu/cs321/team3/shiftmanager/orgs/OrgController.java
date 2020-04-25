@@ -3,6 +3,7 @@ package edu.gmu.cs321.team3.shiftmanager.orgs;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -22,12 +23,12 @@ public class OrgController {
 
     @PostMapping("/org_registration")
     public String registration(@Valid @ModelAttribute("orgForm") CreateNewOrgForm orgForm,
-            BindingResult bindingResult) {
+            BindingResult bindingResult, Authentication authentication) {
         if (bindingResult.hasErrors()) {
             return "org_registration";
         }
 
-        orgService.registerNewOrg(orgForm);
+        orgService.registerNewOrg(orgForm, authentication.getName());
         System.out.println("Organization: " + orgForm.getName());
 
         return "redirect:/dashboard";

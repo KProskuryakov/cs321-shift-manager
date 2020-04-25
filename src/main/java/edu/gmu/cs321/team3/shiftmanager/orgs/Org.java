@@ -1,7 +1,9 @@
 package edu.gmu.cs321.team3.shiftmanager.orgs;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,17 +28,17 @@ public class Org {
     @NotEmpty
     private String information;
 
-    @OneToMany(mappedBy = "org")
-    private Set<User> members;
+    @OneToMany(mappedBy = "org", orphanRemoval = true, cascade = CascadeType.ALL)
+    private Set<User> members = new LinkedHashSet<>();
 
     @ManyToMany // relation owner
-    private Set<User> invitedUsers;
+    private Set<User> invitedUsers = new LinkedHashSet<>();;
 
-    @OneToMany(mappedBy = "org")
-    private Set<Shift> schedule;
+    @OneToMany(mappedBy = "org", orphanRemoval = true, cascade = CascadeType.ALL)
+    private Set<Shift> schedule = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "org")
-    private Set<ShiftSwap> swaps;
+    @OneToMany(mappedBy = "org", orphanRemoval = true, cascade = CascadeType.ALL)
+    private Set<ShiftSwap> swaps = new LinkedHashSet<>();
 
     public long getId() {
         return id;
@@ -66,8 +68,14 @@ public class Org {
         return members;
     }
 
-    public void setMembers(Set<User> members) {
-        this.members = members;
+    public void addMember(User user) {
+        this.members.add(user);
+        user.setOrg(this);
+    }
+
+    public void removeMember(User user) {
+        this.members.remove(user);
+        user.setOrg(null);
     }
 
     public Set<User> getInvitedUsers() {
