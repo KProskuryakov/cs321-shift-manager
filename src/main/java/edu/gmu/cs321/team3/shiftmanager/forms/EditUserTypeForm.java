@@ -4,15 +4,15 @@ import edu.gmu.cs321.team3.shiftmanager.users.Role;
 
 public class EditUserTypeForm {
 
-    private String userEmail;
+    private long userId;
     private Role role;
 
-    public String getUserEmail() {
-        return userEmail;
+    public long getUserId() {
+        return userId;
     }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
     public Role getRole() {

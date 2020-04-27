@@ -5,8 +5,6 @@ import edu.gmu.cs321.team3.shiftmanager.users.Role;
 import edu.gmu.cs321.team3.shiftmanager.users.User;
 import edu.gmu.cs321.team3.shiftmanager.users.UserRepository;
 
-import java.util.Optional;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,21 +38,40 @@ public class OrgService {
     }
 
     @Transactional
-    public Org getOrg(long id) {
-        Optional<Org> maybeOrg = orgRepo.findById(id);
-        maybeOrg.orElseThrow(() -> {
+    public Org getOrg(String userEmail) {
+        User user = userRepo.findByEmail(userEmail);
+        if (user == null || user.getOrg() == null) {
             throw new OrgNotFoundException();
-        });
-        return maybeOrg.get();
+        }
+        return user.getOrg();
     }
 
     @Transactional
-    public long inviteUserToOrg(String inviteeEmail, String name) {
+    public void inviteUserToOrg(String inviteeEmail, String name) {
         Org curOrg = userRepo.findByEmail(name).getOrg();
         User invitee = userRepo.findByEmail(inviteeEmail);
 
+        // TODO Protect against inviting anyone already in the org
         curOrg.inviteUser(invitee);
-        return curOrg.getId();
+    }
+
+    @Transactional
+    public void acceptInvite(long id, String userEmail) {
+        User curUser = userRepo.findByEmail(userEmail);
+        Org org = orgRepo.getOne(id);
+        curUser.acceptInvite(org);
+    }
+
+    @Transactional
+    public void declineInvite(long id, String userEmail) {
+        User curUser = userRepo.findByEmail(userEmail);
+        Org org = orgRepo.getOne(id);
+        curUser.declineInvite(org);
+    }
+
+    @Transactional
+    public void modifyUserRole(long userId, Role newRole) {
+        userRepo.getOne(userId).setRole(newRole);
     }
 
 }

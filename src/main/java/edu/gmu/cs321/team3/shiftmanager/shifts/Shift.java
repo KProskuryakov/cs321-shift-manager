@@ -1,6 +1,8 @@
 package edu.gmu.cs321.team3.shiftmanager.shifts;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -19,12 +21,12 @@ public class Shift {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private Date startTime;
+    private Timestamp startTime;
 
-    private Date endTime;
+    private Timestamp endTime;
 
     @ManyToMany // relation owner
-    private Set<User> attendees;
+    private Set<User> attendees = new LinkedHashSet<>();
 
     @ManyToOne
     private Org org;
@@ -37,19 +39,19 @@ public class Shift {
         this.id = id;
     }
 
-    public Date getStartTime() {
+    public Timestamp getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(Timestamp startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
+    public Timestamp getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(Timestamp endTime) {
         this.endTime = endTime;
     }
 
@@ -57,8 +59,15 @@ public class Shift {
         return attendees;
     }
 
-    public void setAttendees(Set<User> attendees) {
-        this.attendees = attendees;
+    public void setAttendees(List<User> users) {
+        for (User attendee : attendees) {
+            attendee.getShifts().remove(this);
+        }
+        attendees.clear();
+        for (User user : users) {
+            attendees.add(user);
+            user.getShifts().add(this);
+        }
     }
 
     public Org getOrg() {

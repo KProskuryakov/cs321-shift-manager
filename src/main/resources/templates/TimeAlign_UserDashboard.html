@@ -4,7 +4,7 @@
 <head>
     <meta charset=“utf-8”>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="TimeAlign_Stylesheet.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/TimeAlign_Stylesheet.css}">
     <title>Time Align</title>
 </head>
 
@@ -33,7 +33,7 @@
             <br>
             <h4><b>Organization:</b></h4>
             <a th:unless="${user.org}" href="org_registration.html" th:href="@{/org_registration}">Register a new Organization</a>
-            <a th:if="${user.org}" href="org.html" th:href="@{/org/{orgId}(orgId=${user.org.id})}" th:text="${user.org.name}">Org Name</a>
+            <a th:if="${user.org}" href="org.html" th:href="@{/org}" th:text="${user.org.name}">Org Name</a>
             <br>
         </div>
 
@@ -102,7 +102,7 @@
                 <br>
             </div>
             <div style="margin-left: 120px; margin-right: 120px; padding:0px;">
-                <li><a class="active" href="TimeAlign_ViewShifts.html">View Upcoming Shifts</a></li>
+                <li><a class="active" href="TimeAlign_ViewShifts.html" th:href="@{/shifts}">View Upcoming Shifts</a></li>
                 <br>
                 <li><a href="TimeAlign_UpdateAvailability.html">Update Availability</a></li>
                 <br>
@@ -110,6 +110,16 @@
                 <br><br>
             </div>
 
+            <div th:unless="${user.org}">
+                <h3>Invites To Orgs</h3>
+                <ul>
+                    <li th:each="inviteOrg : ${user.invitesFromOrgs}" >
+                        <span th:text="${inviteOrg.name}">Invited Org</span> -
+                        <a href="#" th:href="@{org/{orgId}/accept(orgId=${inviteOrg.id})}">Accept</a> -
+                        <a href="#" th:href="@{org/{orgId}/decline(orgId=${inviteOrg.id})}">Decline</a>
+                    </li>
+                </ul>
+            </div>
 
 </body>
 

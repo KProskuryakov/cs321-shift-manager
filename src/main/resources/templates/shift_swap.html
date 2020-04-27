@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+      <meta charset="utf-8">
+      <title>Swap Shift</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/TimeAlign_Stylesheet.css}">
+  </head>
+
+  <body>
+
+    <!-- Navigation Menu -->
+
+    <div class="topnav" th:replace="fragments/navbar.html"></div>
+
+    <div class="container">
+
+        <form action="#" th:action="@{/shift/swap/{shiftId}(shiftId=${shiftId})}" method="POST" th:object="${shiftForm}" class="form-signin">
+            <h2 class="form-signin-heading">Request Shift Swap</h2>
+
+            <label for="message">Message:</label>
+            <input type="text" th:field="*{message}" />
+
+            <h3>Your Shifts:</h3>
+            <table>
+                <thead>
+                    <th>Select</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Attendees</th>
+                </thead>
+                <tbody>
+                    <tr th:each="shift : ${shifts}">
+                        <td><input type="radio" th:field="*{shiftId}" th:value="${shift.id}" /></td>
+                        <td th:text="${shift.startTime}"></td>
+                        <td th:text="${shift.endTime}"></td>
+                        <td>
+                            <ul>
+                                <li th:each="attendee : ${shift.attendees}" th:text="${attendee.fname} + ' ' + ${attendee.lname} + ' - ' + ${attendee.role}"></li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div>
+                <label>Attendees: </label>
+                <ul>
+                    <li th:each="attendee: ${wantedShift.attendees}">
+                      <input type="checkbox"
+                          th:field="*{userId}"
+                          th:value="${attendee.id}" />
+                      <label
+                          th:for="${#ids.prev('userId')}"
+                          th:text="${attendee.fname} + ' ' + ${attendee.lname} + ' - ' + ${attendee.role}"></label>
+                    </li>
+                  </ul>
+            </div>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        </form>
+
+    </div>
+  </body>
+</html>
+
+

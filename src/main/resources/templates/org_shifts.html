@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang=“en”>
+
+<head>
+    <meta charset=“utf-8”>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" th:href="@{/TimeAlign_Stylesheet.css}">
+    <title>Time Align</title>
+</head>
+
+<body>
+
+    <!-- Navigation Menu -->
+
+    <div class="topnav" th:replace="fragments/navbar.html"></div>
+
+    <div class="body">
+        <h3>Shifts for Org:</h3>
+        <a th:href="@{/shift/new}">Add Shift</a>
+        <a th:href="@{/shift/swap}">Request Swap</a>
+        <table>
+            <thead>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Attendees</th>
+            </thead>
+            <tbody>
+                <tr th:each="shift : ${shifts}">
+                    <td th:text="${shift.startTime}"></td>
+                    <td th:text="${shift.endTime}"></td>
+                    <td>
+                        <ul>
+                            <li th:each="attendee : ${shift.attendees}" th:text="${attendee.fname} + ' ' + ${attendee.lname} + ' - ' + ${attendee.role}"></li>
+                        </ul>
+                    </td>
+                    <td>
+                        <a th:href="@{/shift/edit/{shiftId}(shiftId=${shift.id})}">Edit Shift</a>
+                        <a th:href="@{/shift/swap/{shiftId}(shiftId=${shift.id})}">Swap Shift</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

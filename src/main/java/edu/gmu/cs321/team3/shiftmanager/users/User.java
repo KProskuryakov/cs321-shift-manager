@@ -139,4 +139,20 @@ public class User {
         return invitesFromOrgs;
     }
 
+    public void acceptInvite(Org org) {
+        if (invitesFromOrgs.contains(org)) {
+            org.addMember(this);
+            setRole(Role.EMPLOYEE);
+            invitesFromOrgs.remove(org);
+            org.getInvitedUsers().remove(this);
+        }
+    }
+
+    public void declineInvite(Org org) {
+        if (invitesFromOrgs.contains(org)) {
+            invitesFromOrgs.remove(org);
+            org.getInvitedUsers().remove(this);
+        }
+    }
+
 }

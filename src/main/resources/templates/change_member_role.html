@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang=“en”>
+
+<head>
+    <meta charset=“utf-8”>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" th:href="@{/TimeAlign_Stylesheet.css}">
+    <title>Time Align</title>
+</head>
+
+<body>
+
+    <!-- Navigation Menu -->
+
+    <div class="topnav" th:replace="fragments/navbar.html"></div>
+
+
+    <div class="body">
+        <h3>Invite To Org:</h3>
+        <form th:action="@{/org/roles}" method="post" th:object="${rolesForm}">
+            <label for="userId">User Email: </label>
+            <select th:field="*{userId}">
+                <option th:each="member : ${user.org.members}" th:value="${member.id}" th:text="${member.fname} + ' ' + ${member.lname} + ' - ' + ${member.role}">User</option>
+            </select>
+            <label for="role">Role:</label>
+            <select th:field="*{role}">
+                <option th:each="role : ${T(edu.gmu.cs321.team3.shiftmanager.users.Role).values()}" th:value="${role}" th:text="${role}">User</option>
+            </select>
+            <br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+
+</html>

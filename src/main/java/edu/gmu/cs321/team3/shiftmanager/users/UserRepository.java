@@ -14,4 +14,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     public Set<User> findAllByOrg(Org org);
 
+    public Set<User> findAllByEmailIn(String[] emails);
 }

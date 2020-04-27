@@ -7,35 +7,35 @@ public class ViewRequestsForm {
     private String createNewOrgRequest;
     private String addUserToOrgRequest;
 
-    public String getswapRequest() {
+    public String getSwapRequest() {
         return swapRequest;
     }
 
-    public void setswapRequest(String swapRequest) {
+    public void setSwapRequest(String swapRequest) {
         this.swapRequest = swapRequest;
     }
 
-    public String getreleaseRequest() {
+    public String getReleaseRequest() {
         return releaseRequest;
     }
 
-    public void setreleaseRequest(String releaseRequest) {
+    public void setReleaseRequest(String releaseRequest) {
         this.releaseRequest = releaseRequest;
     }
 
-    public String getcreateNewOrgRequest() {
+    public String getCreateNewOrgRequest() {
         return createNewOrgRequest;
     }
 
-    public void setcreateNewOrgRequest(String createNewOrgRequest) {
+    public void setCreateNewOrgRequest(String createNewOrgRequest) {
         this.createNewOrgRequest = createNewOrgRequest;
     }
 
-    public String getaddUserToOrgRequest() {
+    public String getAddUserToOrgRequest() {
         return addUserToOrgRequest;
     }
 
-    public void setaddUserToOrgRequest(String addUserToOrgRequest) {
+    public void setAddUserToOrgRequest(String addUserToOrgRequest) {
         this.addUserToOrgRequest = addUserToOrgRequest;
     }
 

@@ -12,37 +12,41 @@
 
     <div class="container">
 
-        <form action="#" th:action="@{/registration}" method="POST" th:object="${userForm}" class="form-signin">
-            <h2 class="form-signin-heading">Create your account</h2>
+    <!-- Navigation Menu -->
 
-            <div>
-                <label>Name: </label>
-                <input type="text" th:field="*{name}" />
-                <ul>
-                    <li th:each="err : ${#fields.errors('name')}" th:text="${err}" />
-                </ul>
-            </div>
+    <div class="topnav" th:replace="fragments/navbar.html"></div>
 
-            <div>
-                <label>Email: </label>
-                <input type="text" th:field="*{email}" />
-                <ul>
-                    <li th:each="err : ${#fields.errors('email')}" th:text="${err}" />
-                </ul>
-            </div>
+    <form action="#" th:action="@{/registration}" method="POST" th:object="${userForm}" class="form-signin">
+        <h2 class="form-signin-heading">Create your account</h2>
 
-            <div>
-                <label>Password: </label>
-                <input type="text" th:field="*{password}" />
-                <ul>
-                    <li th:each="err : ${#fields.errors('password')}" th:text="${err}" />
-                </ul>
-            </div>
+        <div>
+            <label>Name: </label>
+            <input type="text" th:field="*{name}" />
+            <ul>
+                <li th:each="err : ${#fields.errors('name')}" th:text="${err}" />
+            </ul>
+        </div>
 
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
-        </form>
+        <div>
+            <label>Email: </label>
+            <input type="text" th:field="*{email}" />
+            <ul>
+                <li th:each="err : ${#fields.errors('email')}" th:text="${err}" />
+            </ul>
+        </div>
 
-  </body>
+        <div>
+            <label>Password: </label>
+            <input type="text" th:field="*{password}" />
+            <ul>
+                <li th:each="err : ${#fields.errors('password')}" th:text="${err}" />
+            </ul>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+    </form>
+
+</body>
 
 </html>
 

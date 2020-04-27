@@ -28,7 +28,6 @@ public class UserController {
         }
 
         userService.registerNewUser(createAccountForm);
-        System.out.println("User: " + createAccountForm.getEmail());
 
         return "TimeAlign_SignIn";
     }
@@ -36,6 +35,21 @@ public class UserController {
     @GetMapping("/dashboard")
     public String dashboard() {
         return "TimeAlign_UserDashboard";
+    }
+
+    @GetMapping("/")
+    public String home() {
+        return "TimeAlign_HomePage";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "TimeAlign_SignIn";
+    }
+
+    @GetMapping("/contact")
+    public String contact() {
+        return "TimeAlign_ContactUs";
     }
 
 }

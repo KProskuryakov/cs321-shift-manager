@@ -4,7 +4,7 @@
 <head>
     <meta charset=“utf-8”>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="TimeAlign_Stylesheet.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/TimeAlign_Stylesheet.css}">
     <title>Time Align</title>
 </head>
 
@@ -58,6 +58,13 @@
                         <label for="reEnteredPassword">Re-Enter Password: </label>
                         <input type="password" th:field="*{reEnteredPassword}">
                         <br><br>
+                        <div style="margin-left: 80px; margin-right: 80px; padding:0px;">
+                            <b>
+                                <h3>Almost done! When you're finished entering your details, click below.
+                            </b>
+                            <br>(Note: You can start adding employee user accounts after you set up your own first.)</h3><br>
+                            <input type="submit" value="Submit">
+                        </div>
 
                     </span>
                 </form>
@@ -66,17 +73,5 @@
 
 
 
-        <div style="margin-left: 80px; margin-right: 80px; padding:0px;">
-            <b>
-                <h3>Almost done! When you're finished entering your details, click below.
-            </b>
-            <br>(Note: You can start adding employee user accounts after you set up your own first.)</h3><br>
-            <span class="tab2"><span class="tab2">
-                    <a href="TimeAlign_UserHomePage.html"><input type="submit" value="Submit"></a>
 
-                    <!-- This submit button for testing of HTML only -->
-                    <a href="TimeAlign_UserDashboard.html">Tester Submit</a>
-
-                </span></span>
-        </div>
         <br><br><br><br>

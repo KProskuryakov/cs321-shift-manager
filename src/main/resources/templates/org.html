@@ -23,11 +23,16 @@
         <div th:text="${org.information}"></div>
         <h3>Members:</h3>
         <ul>
-            <li th:each="member : ${org.members}" th:text="${member.fname} + ' ' + ${member.lname}">Member Name</li>
+            <li th:each="member : ${org.members}" th:text="${member.fname} + ' ' + ${member.lname} + ' - ' + ${member.role}">Member Name</li>
         </ul>
+        <a href="change_member_role.html" th:href="@{/org/roles}">Change Role</a>
         <br>
         <a href="invite_to_org.html" th:href="@{/org/invite}">Invite Members</a>
         <br>
+
+        <h3>Schedule:</h3>
+        <a class="active" href="TimeAlign_ViewShifts.html" th:href="@{/org/shifts}">View Upcoming Shifts</a>
+
         <h3>Invited:</h3>
         <ul>
             <li th:each="invitedUser : ${org.invitedUsers}" th:text="${invitedUser.fname} + ' ' + ${invitedUser.lname}">Invited Name</li>

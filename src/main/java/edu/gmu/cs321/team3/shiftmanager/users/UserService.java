@@ -38,4 +38,10 @@ public class UserService {
         return userRepo.findByEmail(email);
     }
 
+    public void ensureManager(String email) {
+        if (userRepo.findByEmail(email).getRole() != Role.MANAGER) {
+            throw new NotManagerException();
+        }
+    }
+
 }

@@ -32,7 +32,7 @@ public class Org {
     private Set<User> members = new LinkedHashSet<>();
 
     @ManyToMany // relation owner
-    private Set<User> invitedUsers = new LinkedHashSet<>();;
+    private Set<User> invitedUsers = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "org", orphanRemoval = true, cascade = CascadeType.ALL)
     private Set<Shift> schedule = new LinkedHashSet<>();
