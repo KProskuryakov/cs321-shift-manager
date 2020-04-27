@@ -16,8 +16,7 @@
 
     <div class="body">
         <h3>Shifts for Org:</h3>
-        <a th:href="@{/shift/new}">Add Shift</a>
-        <a th:href="@{/shift/swap}">Request Swap</a>
+        <a th:if="${user.role.name() == 'MANAGER' or user.role.name() == 'SHIFTLEAD'}" th:href="@{/shift/new}">Add Shift</a>
         <table>
             <thead>
                 <th>Start Time</th>

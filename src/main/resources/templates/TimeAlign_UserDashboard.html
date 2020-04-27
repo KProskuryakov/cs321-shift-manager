@@ -37,6 +37,28 @@
             <br>
         </div>
 
+        <div style="margin-left: 80px; margin-right: 80px; padding:0px;" th:unless="${user.org}">
+            <h3>Invites To Orgs</h3>
+            <ul>
+                <li th:each="inviteOrg : ${user.invitesFromOrgs}" >
+                    <span th:text="${inviteOrg.name}">Invited Org</span> -
+                    <a href="#" th:href="@{org/{orgId}/accept(orgId=${inviteOrg.id})}">Accept</a> -
+                    <a href="#" th:href="@{org/{orgId}/decline(orgId=${inviteOrg.id})}">Decline</a>
+                </li>
+            </ul>
+        </div>
+
+        <div style="margin-left: 80px; margin-right: 80px; padding:0px;">
+            <h3>Requested Swaps</h3>
+            <ul>
+                <li th:each="swap : ${user.requestedSwaps}"><a th:href="@{/swap/{swapId}(swapId=${swap.id})}" th:text="'To: ' + ${swap.receiver.getTag()}"></a></li>
+            </ul>
+            <h3>Received Swaps</h3>
+            <ul>
+                <li th:each="swap : ${user.receivedSwaps}"><a th:href="@{/swap/{swapId}(swapId=${swap.id})}" th:text="'From: ' + ${swap.requestor.getTag()}"></a></li>
+            </ul>
+        </div>
+
         <!-- Calendar of Events --->
 
         <div style="margin-left: 0px; margin-right: 0px; padding:0px;">
@@ -104,21 +126,6 @@
             <div style="margin-left: 120px; margin-right: 120px; padding:0px;">
                 <li><a class="active" href="TimeAlign_ViewShifts.html" th:href="@{/shifts}">View Upcoming Shifts</a></li>
                 <br>
-                <li><a href="TimeAlign_UpdateAvailability.html">Update Availability</a></li>
-                <br>
-                <li><a href="TimeAlign_ViewMakeRequests.html">Make or View Requests</a></li>
-                <br><br>
-            </div>
-
-            <div th:unless="${user.org}">
-                <h3>Invites To Orgs</h3>
-                <ul>
-                    <li th:each="inviteOrg : ${user.invitesFromOrgs}" >
-                        <span th:text="${inviteOrg.name}">Invited Org</span> -
-                        <a href="#" th:href="@{org/{orgId}/accept(orgId=${inviteOrg.id})}">Accept</a> -
-                        <a href="#" th:href="@{org/{orgId}/decline(orgId=${inviteOrg.id})}">Decline</a>
-                    </li>
-                </ul>
             </div>
 
 </body>

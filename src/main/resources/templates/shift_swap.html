@@ -31,7 +31,7 @@
                 </thead>
                 <tbody>
                     <tr th:each="shift : ${shifts}">
-                        <td><input type="radio" th:field="*{shiftId}" th:value="${shift.id}" /></td>
+                        <td><input type="radio" th:field="*{wantedShiftId}" th:value="${shift.id}" /></td>
                         <td th:text="${shift.startTime}"></td>
                         <td th:text="${shift.endTime}"></td>
                         <td>

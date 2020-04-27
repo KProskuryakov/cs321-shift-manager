@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang=“en”>
+
+<head>
+    <meta charset=“utf-8”>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" th:href="@{/TimeAlign_Stylesheet.css}">
+    <title>Time Align</title>
+</head>
+
+<body>
+
+    <!-- Navigation Menu -->
+
+    <div class="topnav" th:replace="fragments/navbar.html"></div>
+
+    <div class="body">
+        <h2>Shift Swap:</h2>
+        <p th:unless="${swap.accepted}">Not Accepted by Receiver</p>
+        <p th:unless="${swap.approved}">Not Approved by Manager</p>
+        <p th:if="${swap.accepted}">Accepted by Receiver</p>
+        <p th:if="${swap.approved}">Approved by Manager</p>
+
+        <div th:if="${user.id == swap.receiver.id}">
+            <h3>Receiver actions</h3>
+            <a th:href="@{/swap/{swapId}/accept(swapId=${swap.id})}">Accept</a>
+            <a th:href="@{/swap/{swapId}/decline(swapId=${swap.id})}">Decline</a>
+        </div>
+
+        <div th:if="${user.role.name() == 'MANAGER'}">
+            <h3>Manager actions</h3>
+            <a th:href="@{/swap/{swapId}/approve(swapId=${swap.id})}">Approve</a>
+            <a th:href="@{/swap/{swapId}/reject(swapId=${swap.id})}">Reject</a>
+        </div>
+
+        <h3>Requestor:</h3>
+        <p th:text="${swap.requestor.getTag()}"></p>
+        <h3>Receiver:</h3>
+        <p th:text="${swap.receiver.getTag()}"></p>
+        <h3>Message:</h3>
+        <p th:text="${swap.message}"></p>
+        <table>
+            <thead>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Attendees</th>
+            </thead>
+            <h3>Shifts:</h3>
+            <tbody>
+                <tr>
+                    <td>Offered</td>
+                    <td th:text="${swap.offeredShift.startTime}"></td>
+                    <td th:text="${swap.offeredShift.endTime}"></td>
+                    <td>
+                        <ul>
+                            <li th:each="attendee : ${swap.offeredShift.attendees}" th:text="${attendee.fname} + ' ' + ${attendee.lname} + ' - ' + ${attendee.role}"></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Wanted</td>
+                    <td th:text="${swap.wantedShift.startTime}"></td>
+                    <td th:text="${swap.wantedShift.endTime}"></td>
+                    <td>
+                        <ul>
+                            <li th:each="attendee : ${swap.wantedShift.attendees}" th:text="${attendee.fname} + ' ' + ${attendee.lname} + ' - ' + ${attendee.role}"></li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

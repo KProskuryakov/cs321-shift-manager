@@ -14,7 +14,7 @@ import edu.gmu.cs321.team3.shiftmanager.users.User;
 public class ShiftSwap {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @NotEmpty
     private String message;
@@ -37,11 +37,11 @@ public class ShiftSwap {
     @ManyToOne
     private User receiver;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -75,6 +75,7 @@ public class ShiftSwap {
 
     public void setOrg(Org org) {
         this.org = org;
+        org.getSwaps().add(this);
     }
 
     public Shift getWantedShift() {
@@ -99,6 +100,7 @@ public class ShiftSwap {
 
     public void setRequestor(User requestor) {
         this.requestor = requestor;
+        requestor.getRequestedSwaps().add(this);
     }
 
     public User getReceiver() {
@@ -107,5 +109,24 @@ public class ShiftSwap {
 
     public void setReceiver(User receiver) {
         this.receiver = receiver;
+        receiver.getReceivedSwaps().add(this);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+
+        if (!(o instanceof ShiftSwap))
+            return false;
+
+        ShiftSwap other = (ShiftSwap) o;
+
+        return id != null && id.equals(other.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
     }
 }

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang=“en”>
+
+<head>
+    <meta charset=“utf-8”>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" th:href="@{/TimeAlign_Stylesheet.css}">
+    <title>Time Align</title>
+</head>
+
+<body>
+
+    <!-- Navigation Menu -->
+
+    <div class="topnav" th:replace="fragments/navbar.html"></div>
+
+    <!--- Company Name --->
+
+
+    <div class="body" style="margin-left: 80px; margin-right: 80px; padding:0px;">
+
+
+        <div>
+            <h3>Swaps for Org</h3>
+            <ul>
+                <li th:each="swap : ${user.org.swaps}"><a th:href="@{/swap/{swapId}(swapId=${swap.id})}" th:text="'From: ' + ${swap.requestor.getTag()} + ' - To: ' + ${swap.receiver.getTag()}"></a></li>
+            </ul>
+        </div>
+
+
+</body>
+
+</html>

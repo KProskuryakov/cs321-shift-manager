@@ -2,7 +2,7 @@ package edu.gmu.cs321.team3.shiftmanager.forms;
 
 public class RequestSwapForm {
     private Long userId;
-    private Long shiftId;
+    private Long wantedShiftId;
     private String message;
 
     public Long getUserId() {
@@ -13,12 +13,12 @@ public class RequestSwapForm {
         this.userId = userId;
     }
 
-    public Long getShiftId() {
-        return shiftId;
+    public Long getWantedShiftId() {
+        return wantedShiftId;
     }
 
-    public void setShiftId(Long shiftId) {
-        this.shiftId = shiftId;
+    public void setWantedShiftId(Long wantedShiftId) {
+        this.wantedShiftId = wantedShiftId;
     }
 
     public String getMessage() {

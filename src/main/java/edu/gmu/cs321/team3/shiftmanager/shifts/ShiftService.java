@@ -16,6 +16,8 @@ import edu.gmu.cs321.team3.shiftmanager.forms.EditShiftForm;
 import edu.gmu.cs321.team3.shiftmanager.forms.RequestSwapForm;
 import edu.gmu.cs321.team3.shiftmanager.orgs.Org;
 import edu.gmu.cs321.team3.shiftmanager.orgs.OrgService;
+import edu.gmu.cs321.team3.shiftmanager.users.NotManagerException;
+import edu.gmu.cs321.team3.shiftmanager.users.Role;
 import edu.gmu.cs321.team3.shiftmanager.users.User;
 import edu.gmu.cs321.team3.shiftmanager.users.UserRepository;
 
@@ -24,6 +26,9 @@ public class ShiftService {
 
     @Autowired
     private ShiftRepository shiftRepo;
+
+    @Autowired
+    private ShiftSwapRepository shiftSwapRepo;
 
     @Autowired
     private UserRepository userRepo;
@@ -99,9 +104,97 @@ public class ShiftService {
         return shiftRepo.getOne(id);
     }
 
-	public void requestSwap(@Valid RequestSwapForm shiftForm, long id, String name) {
+    @Transactional
+    public void requestSwap(@Valid RequestSwapForm swapForm, long id, String userEmail) {
         ShiftSwap newSwap = new ShiftSwap();
-        // newSwap.set
-	}
+        newSwap.setMessage(swapForm.getMessage());
+
+        newSwap.setOrg(orgService.getOrg(userEmail));
+
+        Shift offeredShift = shiftRepo.getOne(id);
+        newSwap.setOfferedShift(offeredShift);
+
+        Shift wantedShift = shiftRepo.getOne(swapForm.getWantedShiftId());
+        newSwap.setWantedShift(wantedShift);
+
+        newSwap.setRequestor(userRepo.findByEmail(userEmail));
+        newSwap.setReceiver(userRepo.getOne(swapForm.getUserId()));
+
+        shiftSwapRepo.save(newSwap);
+    }
+
+    @Transactional
+    public ShiftSwap getSwap(long id) {
+        return shiftSwapRepo.getOne(id);
+    }
+
+    @Transactional
+    public void acceptSwap(long id, String name) {
+        ShiftSwap swap = shiftSwapRepo.getOne(id);
+        User user = userRepo.findByEmail(name);
+        if (swap.getReceiver().getId() != user.getId()) {
+            throw new NotReceiverException();
+        }
+
+        swap.setAccepted(true);
+        if (swap.getApproved()) {
+            performSwap(swap);
+        }
+    }
+
+    @Transactional
+    public void declineSwap(long id, String name) {
+        ShiftSwap swap = shiftSwapRepo.getOne(id);
+        User user = userRepo.findByEmail(name);
+        if (swap.getReceiver().getId() != user.getId()) {
+            throw new NotReceiverException();
+        }
+
+        removeSwap(swap);
+    }
+
+    @Transactional
+    public void approveSwap(long id, String name) {
+        ShiftSwap swap = shiftSwapRepo.getOne(id);
+        User user = userRepo.findByEmail(name);
+        if (swap.getOrg().getId() != user.getOrg().getId() || user.getRole() != Role.MANAGER) {
+            throw new NotManagerException();
+        }
+
+        swap.setApproved(true);
+        if (swap.getAccepted()) {
+            performSwap(swap);
+        }
+    }
+
+    @Transactional
+    public void rejectSwap(long id, String name) {
+        ShiftSwap swap = shiftSwapRepo.getOne(id);
+        User user = userRepo.findByEmail(name);
+        if (swap.getOrg().getId() != user.getOrg().getId() || user.getRole() != Role.MANAGER) {
+            throw new NotManagerException();
+        }
+
+        removeSwap(swap);
+    }
+
+    @Transactional
+    public void performSwap(ShiftSwap swap) {
+        swap.getOfferedShift().addAttendee(swap.getRequestor());
+        swap.getOfferedShift().removeAttendee(swap.getReceiver());
+
+        swap.getWantedShift().addAttendee(swap.getReceiver());
+        swap.getWantedShift().removeAttendee(swap.getRequestor());
+
+        shiftRepo.save(swap.getWantedShift());
+        shiftRepo.save(swap.getOfferedShift());
+
+        shiftSwapRepo.delete(swap);
+    }
+
+    @Transactional
+    public void removeSwap(ShiftSwap swap) {
+        shiftSwapRepo.delete(swap);
+    }
 
 }

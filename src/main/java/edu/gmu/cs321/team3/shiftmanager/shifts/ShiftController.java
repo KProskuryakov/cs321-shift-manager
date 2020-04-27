@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import edu.gmu.cs321.team3.shiftmanager.forms.EditShiftForm;
 import edu.gmu.cs321.team3.shiftmanager.forms.RequestSwapForm;
 import edu.gmu.cs321.team3.shiftmanager.orgs.OrgService;
+import edu.gmu.cs321.team3.shiftmanager.users.UserService;
 
 @Controller
 public class ShiftController {
@@ -24,6 +25,9 @@ public class ShiftController {
 
     @Autowired
     private OrgService orgService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/shifts")
     public String shifts(Model model, Authentication auth) {
@@ -86,4 +90,39 @@ public class ShiftController {
         return "redirect:/org/shifts";
     }
 
+    @GetMapping("/swap/{swapId}")
+    public String viewSwap(@PathVariable("swapId") long id, Model model) {
+        model.addAttribute("swap", shiftService.getSwap(id));
+        return "swap_view";
+    }
+
+    @GetMapping("/swap/{swapId}/accept")
+    public String acceptSwap(@PathVariable("swapId") long id, Authentication auth) {
+        shiftService.acceptSwap(id, auth.getName());
+        return "redirect:/dashboard";
+    }
+
+    @GetMapping("/swap/{swapId}/decline")
+    public String declineSwap(@PathVariable("swapId") long id, Authentication auth) {
+        shiftService.declineSwap(id, auth.getName());
+        return "redirect:/dashboard";
+    }
+
+    @GetMapping("/swap/{swapId}/approve")
+    public String approveSwap(@PathVariable("swapId") long id, Authentication auth) {
+        shiftService.approveSwap(id, auth.getName());
+        return "redirect:/org/shiftswaps";
+    }
+
+    @GetMapping("/swap/{swapId}/reject")
+    public String rejectSwap(@PathVariable("swapId") long id, Authentication auth) {
+        shiftService.rejectSwap(id, auth.getName());
+        return "redirect:/org/shiftswaps";
+    }
+
+    @GetMapping("/org/shiftswaps")
+    public String viewOrgSwaps(Authentication auth) {
+        userService.ensureManager(auth.getName());
+        return "view_org_swaps";
+    }
 }

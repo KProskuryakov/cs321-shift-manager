@@ -20,7 +20,7 @@ import edu.gmu.cs321.team3.shiftmanager.users.User;
 public class Org {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @NotEmpty
     private String name;
@@ -40,11 +40,11 @@ public class Org {
     @OneToMany(mappedBy = "org", orphanRemoval = true, cascade = CascadeType.ALL)
     private Set<ShiftSwap> swaps = new LinkedHashSet<>();
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -101,5 +101,26 @@ public class Org {
 
     public void setSwaps(Set<ShiftSwap> swaps) {
         this.swaps = swaps;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (!(o instanceof Org)) {
+            return false;
+        }
+
+        Org other = (Org) o;
+
+        return id != null &&
+               id.equals(other.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
     }
 }

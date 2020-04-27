@@ -19,7 +19,7 @@ import edu.gmu.cs321.team3.shiftmanager.users.User;
 public class Shift {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     private Timestamp startTime;
 
@@ -31,11 +31,11 @@ public class Shift {
     @ManyToOne
     private Org org;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -70,12 +70,40 @@ public class Shift {
         }
     }
 
+    public void addAttendee(User attendee) {
+        attendees.add(attendee);
+        attendee.getShifts().add(this);
+    }
+
+    public void removeAttendee(User attendee) {
+        attendees.remove(attendee);
+        attendee.getShifts().remove(this);
+    }
+
     public Org getOrg() {
         return org;
     }
 
     public void setOrg(Org org) {
         this.org = org;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+
+        if (!(o instanceof Shift))
+            return false;
+
+        Shift other = (Shift) o;
+
+        return id != null && id.equals(other.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
     }
 
 }

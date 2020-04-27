@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 
 import edu.gmu.cs321.team3.shiftmanager.orgs.Org;
@@ -22,7 +23,7 @@ import edu.gmu.cs321.team3.shiftmanager.shifts.ShiftSwap;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @NotEmpty
     private String fname;
@@ -55,11 +56,11 @@ public class User {
     @ManyToMany(mappedBy = "invitedUsers")
     private Set<Org> invitesFromOrgs;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -153,6 +154,31 @@ public class User {
             invitesFromOrgs.remove(org);
             org.getInvitedUsers().remove(this);
         }
+    }
+
+    @Transient
+    public String getTag() {
+        return fname + ' ' + lname + " - " + role.name();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (!(o instanceof User)) {
+            return false;
+        }
+
+        User other = (User) o;
+
+        return id != null && id.equals(other.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
     }
 
 }
