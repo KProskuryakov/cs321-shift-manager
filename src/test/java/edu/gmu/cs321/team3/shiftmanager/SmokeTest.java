@@ -15,6 +15,7 @@ public class SmokeTest {
 
 	@Autowired
     private UserController controller1;
+    @Autowired
     private OrgController controller2;
 
 	@Test
