@@ -47,8 +47,8 @@ public class OrgService {
     }
 
     @Transactional
-    public void inviteUserToOrg(String inviteeEmail, String name) {
-        Org curOrg = userRepo.findByEmail(name).getOrg();
+    public void inviteUserToOrg(String inviteeEmail, String managerEmail) {
+        Org curOrg = userRepo.findByEmail(managerEmail).getOrg();
         User invitee = userRepo.findByEmail(inviteeEmail);
 
         // TODO Protect against inviting anyone already in the org
