@@ -25,7 +25,7 @@ public class OrgServiceTest {
 
     @Test
     @Transactional
-	public void contexLoads() throws Exception {
+	public void testCreateOrg() throws Exception {
         CreateNewOrgForm orgForm = new CreateNewOrgForm();
         orgForm.setName("My New Org");
         orgForm.setInformation("This is a great organization.");
@@ -35,5 +35,12 @@ public class OrgServiceTest {
         assertThat(orgRepo.findByName("My New Org")).isNotNull();
         assertThat(orgRepo.findByName("My New Org").getMembers()).isNotEmpty();
         assertThat(userRepo.findByEmail("test@test.com").getOrg()).isEqualTo(orgRepo.findByName("My New Org"));
-	}
+    }
+    
+    @Test
+    @Transactional
+	public void z() throws Exception {
+        assertThat(orgRepo.findByName("My New Org")).isNull();
+    }
+
 }

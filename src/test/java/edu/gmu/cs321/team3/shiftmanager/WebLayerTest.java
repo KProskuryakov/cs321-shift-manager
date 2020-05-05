@@ -6,6 +6,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import javax.transaction.Transactional;
+
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
+
+import edu.gmu.cs321.team3.shiftmanager.forms.CreateNewOrgForm;
+import edu.gmu.cs321.team3.shiftmanager.orgs.OrgService;
 
 
 
@@ -22,6 +27,9 @@ public class WebLayerTest {
 
 	@Autowired
 	private MockMvc mockMvc;
+
+	@Autowired
+    private OrgService orgService;
 
 	@Test
 	public void homeTest() throws Exception {
@@ -63,8 +71,15 @@ public class WebLayerTest {
 
 	@Test
 	@WithMockUser(value="test@test.com")
+	@Transactional
 	public void shiftsTest() throws Exception {
+		CreateNewOrgForm orgForm = new CreateNewOrgForm();
+        orgForm.setName("My New Org");
+        orgForm.setInformation("This is a great organization.");
+
+        orgService.registerNewOrg(orgForm, "test@test.com");
+
 		this.mockMvc.perform(get("/shifts")).andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string(containsString("Start Time End Time Attendees")));
+                .andExpect(content().string(containsString("Your Shifts:")));
     }
 }
