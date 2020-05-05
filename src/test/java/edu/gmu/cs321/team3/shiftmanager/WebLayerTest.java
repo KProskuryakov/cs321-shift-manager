@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 
@@ -47,19 +47,22 @@ public class WebLayerTest {
 				.andExpect(content().string(containsString("Kostyantyn Proskuryakov")));
     }
     
-    @Test
+	@Test
+	@WithMockUser(value="test@test.com")
 	public void dashboardTest() throws Exception {
 		this.mockMvc.perform(get("/dashboard")).andDo(print()).andExpect(status().isOk())
 				.andExpect(content().string(containsString("USER INFO")));
     }
     
-    @Test
+	@Test
+	@WithMockUser(value="test@test.com")
 	public void orgRegistrationTest() throws Exception {
 		this.mockMvc.perform(get("/org_registration")).andDo(print()).andExpect(status().isOk())
 				.andExpect(content().string(containsString("Create an Organizational Group")));
     }
 
-    @Test
+	@Test
+	@WithMockUser(value="test@test.com")
 	public void shiftsTest() throws Exception {
 		this.mockMvc.perform(get("/shifts")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString("Start Time End Time Attendees")));
